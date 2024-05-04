@@ -5,7 +5,7 @@ FROM node:slim
 ENV NODE_ENV production
 
 # Copying all the files in our project
-COPY . .
+COPY . ./
 
 # Installing dependencies
 RUN npm install
