@@ -1,3 +1,5 @@
+/* global chrome */
+
 const waitForPageLoad = new Promise((resolve) => {
   if (document.readyState === 'complete') {
     resolve();
