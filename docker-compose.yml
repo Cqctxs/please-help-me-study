@@ -2,13 +2,13 @@ services:
   web:
     build: 
       context: ./website
-      dockerfile: ./website/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "8000:3000"
     
   server:
     build: 
       context: ./server
-      dockerfile: ./server/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "8001:3000"
