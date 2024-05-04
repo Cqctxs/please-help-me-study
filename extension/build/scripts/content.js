@@ -47,16 +47,16 @@ waitForPageLoad.then(() => {
 
 sendData.then((data) => {
   console.log("sent", data);
-//   fetch("http://localhost:8080/api/grade", {
-//   method: "POST",
-//   body: JSON.stringify({
-//     name: data.name,
-//     article: data.article
-//   }),
-//   headers: {
-//     "Content-type": "application/json; charset=UTF-8"
-//   }
-// })
-//   .then((response) => response.json())
-//   .then((json) => console.log(json));
+  fetch("http://localhost:8080/api/grade", {
+  method: "POST",
+  body: JSON.stringify({
+    name: data.name,
+    article: data.article
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
+  .then((response) => response.json())
+  .then((json) => console.log(json));
 });
