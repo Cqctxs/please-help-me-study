@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import axios from "axios";
 
-const SolutionMenu = () => {
+const SolutionMenu = (solution, setSolution) => {
     const [content, setContent] = useState("");
+    const [response, setResponse] = useState("");
 
     const handleEditorChange = (content) => {
         setContent(content);
@@ -15,16 +15,23 @@ const SolutionMenu = () => {
         const text = rawText.textContent || rawText.innerText;
     
         console.log(text);
-        // Post to server
-        // axios.post("/path/to/server.php", { text })
-        //     .then((response) => {
-        //         // Handle the response from the server
-        //         console.log(response)
-        //     })
-        //     .catch((error) => {
-        //         // Handle any errors
-        //         console.log(error)
-        //     });
+
+        // Send the solution to the server
+        fetch("http://localhost:8080/api/problem/answer", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userResponse: text, solution: solution }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          setResponse(data.response);
+        })
+        .catch((error) => {
+          // Handle the error
+        });
+        
     };    
 
     return (
@@ -46,6 +53,7 @@ const SolutionMenu = () => {
                 onEditorChange={handleEditorChange}
             />
             <button onClick={handleSubmit}>Submit</button>
+            {response}
         </div>
     );
 };

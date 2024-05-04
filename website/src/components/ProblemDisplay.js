@@ -37,8 +37,9 @@ const ProblemDisplay = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Success:", data.response.slice(7, -6));
           const obj = JSON.parse(data.response.slice(7, -6));
+          console.log(obj.problem);
+          console.log(obj.solution);
           setProblem(obj.problem);
           setSolution(obj.solution);
         })
@@ -57,7 +58,7 @@ const ProblemDisplay = () => {
           <h1>{problem}</h1>
         </div>
       )}
-      <SolutionMenu />
+      <SolutionMenu solution={solution} setSolution={setSolution} />
     </div>
   );
 };
