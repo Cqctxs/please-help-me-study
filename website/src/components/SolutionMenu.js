@@ -1,28 +1,24 @@
-import React from 'react'
+import React from "react";
+import { Editor } from "@tinymce/tinymce-react";
 
 const SolutionMenu = () => {
-  return (
-    <div>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-
-            <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-            <script>
-            tinymce.init({
-                selector: '#mytextarea'
-            });
-            </script>
-        </head>
-
-        <body>
-            <h1>TinyMCE Quick Start Guide</h1>
-            <form method="post">
-            <textarea id="mytextarea">Hello, World!</textarea>
-            </form>
-        </body>
-    </div>
-  )
+    return (
+        <Editor
+            apiKey='fm5ufxn5p7tojmfbzvqc6fxs62argkafj4p5cyb26ze8y5up'
+            init={{
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+            }}
+            initialValue="Welcome to TinyMCE!"
+        />
+    );
 }
 
 export default SolutionMenu

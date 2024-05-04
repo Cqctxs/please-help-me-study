@@ -1,8 +1,12 @@
 import React from 'react'
+import SolutionMenu from './SolutionMenu'
 
 const ProblemDisplay = () => {
   return (
-    <div>Temp Problem</div>
+    <div>Temp Problem
+        <SolutionMenu />
+    </div>
+    
   )
 }
 
