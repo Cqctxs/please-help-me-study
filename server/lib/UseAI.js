@@ -36,7 +36,7 @@ const generativeModel = vertex_ai.preview.getGenerativeModel({
 async function generateContent(prompt) {
   const req = {
     contents: [
-      {role: 'user', parts: [{text: `${prompt}`}]}
+      {role: 'user', parts: [{text: prompt}]}
     ],
   };
 
