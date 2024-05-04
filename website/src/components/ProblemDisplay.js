@@ -58,7 +58,7 @@ const ProblemDisplay = () => {
           <h1>{problem}</h1>
         </div>
       )}
-      <SolutionMenu />
+      <SolutionMenu solution={solution} setSolution={setSolution} />
     </div>
   );
 };

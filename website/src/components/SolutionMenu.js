@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
-const SolutionMenu = () => {
+const SolutionMenu = (solution, setSolution) => {
     const [content, setContent] = useState("");
+    const [response, setResponse] = useState("");
 
     const handleEditorChange = (content) => {
         setContent(content);
@@ -14,6 +15,22 @@ const SolutionMenu = () => {
         const text = rawText.textContent || rawText.innerText;
     
         console.log(text);
+
+        // Send the solution to the server
+        fetch("http://localhost:8080/api/problem/answer", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userResponse: text, solution: solution }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          setResponse(data.response);
+        })
+        .catch((error) => {
+          // Handle the error
+        });
         
     };    
 
@@ -36,6 +53,7 @@ const SolutionMenu = () => {
                 onEditorChange={handleEditorChange}
             />
             <button onClick={handleSubmit}>Submit</button>
+            {response}
         </div>
     );
 };
