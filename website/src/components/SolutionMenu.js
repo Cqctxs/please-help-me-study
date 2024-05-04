@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import ReactMarkdown from 'react-markdown'
 
 const SolutionMenu = (solution, setSolution) => {
     const [content, setContent] = useState("");
@@ -53,7 +54,7 @@ const SolutionMenu = (solution, setSolution) => {
                 onEditorChange={handleEditorChange}
             />
             <button onClick={handleSubmit}>Submit</button>
-            <p>{response}</p>
+            <ReactMarkdown>{response}</ReactMarkdown>
         </div>
     );
 };
