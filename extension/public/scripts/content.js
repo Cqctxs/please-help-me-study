@@ -77,8 +77,8 @@ sendData.then(async (data) => {  // Add async here
     if (json.response.trim() === "brainrot" || json.response.trim() === "Brainrot") {
       bad = true;
     }
-    // if (bad !== undefined && bad === true) {
-    //   window.location.replace("http://localhost:3000/problem");
-    // }
+    if (bad !== undefined && bad === true) {
+      window.location.replace("http://localhost:3000/problem");
+    }
   });
 });
