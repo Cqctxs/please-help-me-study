@@ -13,6 +13,29 @@
   position: relative;
 }
 
+.title-wrapper {
+  margin: 50px;
+  position: relative;
+  text-align: center;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column;
+  font: normal bold 1rem / 1.2 'Poppins', 'Helvetica', sans-serif;
+}
+
+button {
+  font: normal bold 1rem / 1.2 'Poppins', 'Helvetica', sans-serif;
+  background-image: linear-gradient(to right, #e600f2, #4e00f7);
+  color: white;
+  padding: 14px 20px;
+  margin: 16px 0;
+  border: none;
+  cursor: pointer;
+  width: 150px;
+  border-radius: 10px;
+}
+
 .gradient {
   position: relative;
   background-image: linear-gradient(to right, #e600f2, #4e00f7, #0575E6, #c841e3);
