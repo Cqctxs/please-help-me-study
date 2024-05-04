@@ -3,7 +3,7 @@ import './App.css';
 import useLocalStorage from './hooks/useLocalStorage';
 
 function App(link) {
-  const [val, setVal] = useLocalStorage("");
+  const [val, setVal] = useLocalStorage("subject", "Math");
   return (
     <div className="App">
       <h1>Blocker</h1>
