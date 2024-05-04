@@ -1,24 +1,62 @@
-const axios = require('axios');
-
-const article = document.body.innerText;
-const name = window.location.href;
-
-axios.post('/grade', {
-  contents: name
-})
-.then((response) => {
-  console.log(response);
-}, (error) => {
-  console.log(error);
+const waitForPageLoad = new Promise((resolve) => {
+  if (document.readyState === 'complete') {
+    resolve();
+  } else {
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'complete') {
+        resolve();
+      }
+    });
+  }
 });
 
-console.log(article);
-// api/grade
-// send to server, feed into ML model and send back
-// send name to server so it can be sent back to extension and autofilled in the form
+let dataResolve;
+let dataReject;
+const sendData = new Promise((resolve, reject) => {
+  dataResolve = resolve;
+  dataReject = reject;
+});
+dataResolve();
 
-const bad = false;
+waitForPageLoad.then(() => {
+  setTimeout(() => {  
+    const article = document.body.innerText;
+    const name = window.location.href;
+    console.log(article);
+    dataResolve({ article, name });
+  }, 1000);
+  
+  // axios.post('/grade', {
+  //   contents: name
+  // })
+  // .then((response) => {
+  //   console.log(response);
+  // }, (error) => {
+  //   console.log(error);
+  // });
 
-if (bad) {
-  window.location.replace("http://www.pleasehelpme.study");
-}
+  // api/grade
+  // send to server, feed into ML model and send back
+  // send name to server so it can be sent back to extension and autofilled in the form
+
+  const bad = false;
+
+  if (bad !== undefined && bad === true) {
+    window.location.replace("http://www.pleasehelpme.study");
+  }
+});
+
+sendData.then((data) => {
+  fetch("http://localhost:8080/api/grade", {
+  method: "POST",
+  body: JSON.stringify({
+    name: data.name,
+    article: data.article
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+});
