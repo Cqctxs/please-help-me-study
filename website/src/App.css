@@ -15,19 +15,18 @@
 
 .gradient {
   position: relative;
-  background-image: linear-gradient(to right, #00F260, #f79d00, #0575E6, #64f38c);
+  background-image: linear-gradient(to right, #e600f2, #4e00f7, #0575E6, #c841e3);
   -webkit-background-clip: text; 
-  background-clip: text; 
   color: transparent;
-  
+  background-clip: text; 
   background-size: 300%;
   background-position: -100%;  
   
-  animation: animatedText 5s infinite alternate-reverse;
+  animation: move 5s infinite alternate;
 }
 
-@keyframes animatedText{
+@keyframes move{
   to {
-    background-position: 100%; 
+    background-position: right; 
   }
 }
