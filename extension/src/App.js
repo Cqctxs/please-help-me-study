@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
+import useLocalStorage from './hooks/useLocalStorage';
 
 function App(link) {
-  const [val, setVal] = useState("");
+  const [val, setVal] = useLocalStorage("");
   return (
     <div className="App">
       <h1>Blocker</h1>
