@@ -55,10 +55,11 @@ sendData.then(async (data) => {  // Add async here
   });
 
   const whitelist = result['whitelist'];
+  console.log("source", data.source);
+  console.log("result", result);
   console.log(data.source.includes(whitelist));
   if (whitelist !== undefined && data.source.includes(whitelist)) {  // Use includes instead of contains
     console.log("whitelist");
-    return;
   }
   console.log("sent", JSON.stringify({ prompt: data.prompt, source: data.source}));
   fetch("http://localhost:8080/api/grade", {
@@ -77,8 +78,8 @@ sendData.then(async (data) => {  // Add async here
     if (json.response.trim() === "brainrot" || json.response.trim() === "Brainrot") {
       bad = true;
     }
-    // if (bad !== undefined && bad === true) {
-    //   window.location.replace("http://localhost:3000/problem");
-    // }
+    if (bad !== undefined && bad === true) {
+      window.location.replace("http://localhost:3000/problem");
+    }
   });
 });
