@@ -51,12 +51,12 @@
 .div-wrapper {
   margin: 50px;
   position: relative;
-  text-align: center;
+  text-align: left;
   display: flex; 
   justify-content: center; 
   align-items: center; 
   flex-direction: column;
-  font: normal bold 6.5rem / 1.2 'Poppins', 'Helvetica', sans-serif;
+  font: normal bold 1rem / 1.2 'Poppins', 'Helvetica', sans-serif;
 }
 
 button {
