@@ -41,11 +41,22 @@ waitForPageLoad.then(() => {
 
   const bad = false;
 
-  if (bad) {
+  if (bad !== undefined && bad === true) {
     window.location.replace("http://www.pleasehelpme.study");
   }
 });
 
 sendData.then((data) => {
-  
+  fetch("http://localhost:8080/api/grade", {
+  method: "POST",
+  body: JSON.stringify({
+    name: data.name,
+    article: data.article
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
+  .then((response) => response.json())
+  .then((json) => console.log(json));
 });
