@@ -16,7 +16,6 @@ const sendData = new Promise((resolve, reject) => {
   dataResolve = resolve;
   dataReject = reject;
 });
-dataResolve();
 
 waitForPageLoad.then(() => {
   setTimeout(() => {  
@@ -47,6 +46,7 @@ waitForPageLoad.then(() => {
 });
 
 sendData.then((data) => {
+  console.log("sent", data);
   fetch("http://localhost:8080/api/grade", {
   method: "POST",
   body: JSON.stringify({
