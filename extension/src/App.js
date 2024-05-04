@@ -6,10 +6,8 @@ import useChromeStoreList from './hooks/useChromeStoreList';
 
 function App(link) {
   const [val, setVal] = useChromeStorage("topic", "Mathematics");
-  const [url_w, set_url_w] = useState("");
-  const [url_b, blacklist] = useState("");
-
-  const [w, whitelist] = useChromeStoreList("whitelist", []);
+  const [url_w, set_url_w] = useChromeStorage("whitelist", "");
+  const [url_b, blacklist] = useChromeStorage("blacklist", "");
 
   return (
     <div className="App">
@@ -30,7 +28,7 @@ function App(link) {
     </form>
     <form>
       <label>
-        <span> Add </span>
+        <span> Whitelist websites (urls separated by commas): </span>
         <input
           type="text"
           name="url"
@@ -39,11 +37,6 @@ function App(link) {
           onChange={(e) => {
             set_url_w(e.target.value);
           }}
-          onSubmit={(e) => {
-            whitelist(url_w);
-            set_url_w("");
-          }}
-          required
         />
       </label>
     </form>

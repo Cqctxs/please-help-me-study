@@ -26,19 +26,6 @@ waitForPageLoad.then(() => {
     console.log(prompt);
     dataResolve({ prompt, source });
   }, 1000);
-  
-  // axios.post('/grade', {
-  //   contents: name
-  // })
-  // .then((response) => {
-  //   console.log(response);
-  // }, (error) => {
-  //   console.log(error);
-  // });
-
-  // api/grade
-  // send to server, feed into ML model and send back
-  // send name to server so it can be sent back to extension and autofilled in the form
 });
 
 // Listen for messages from the web page
@@ -60,7 +47,19 @@ window.addEventListener('message', (event) => {
 
 let bad = false;
 
-sendData.then((data) => {
+sendData.then(async (data) => {  // Add async here
+  const result = await new Promise((resolve) => {  // Wrap chrome.storage.sync.get in a Promise
+    chrome.storage.sync.get('whitelist', (result) => {
+      resolve(result);
+    });
+  });
+
+  const whitelist = result['whitelist'];
+  console.log(data.source.includes(whitelist));
+  if (whitelist !== undefined && data.source.includes(whitelist)) {  // Use includes instead of contains
+    console.log("whitelist");
+    return;
+  }
   console.log("sent", JSON.stringify({ prompt: data.prompt, source: data.source}));
   fetch("http://localhost:8080/api/grade", {
     method: "POST",
@@ -78,8 +77,8 @@ sendData.then((data) => {
     if (json.response.trim() === "brainrot" || json.response.trim() === "Brainrot") {
       bad = true;
     }
-    if (bad !== undefined && bad === true) {
-      window.location.replace("http://localhost:3000/problem");
-    }
+    // if (bad !== undefined && bad === true) {
+    //   window.location.replace("http://localhost:3000/problem");
+    // }
   });
 });
