@@ -27,6 +27,7 @@ const ProblemDisplay = () => {
 
   useEffect(() => {
     if (topic !== null) {  // Add this line
+      console.log("Topic:", topic)
       fetch("http://localhost:8080/api/problem/generate", {
         method: "POST",
         headers: {
@@ -50,7 +51,7 @@ const ProblemDisplay = () => {
   return (
     <div>
       {problem === null ? (
-        <p>Loading...</p>
+        <h1>Loading...</h1>
       ) : (
         <div>
           <h1>{problem}</h1>
