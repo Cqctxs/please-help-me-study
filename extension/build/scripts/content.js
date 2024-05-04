@@ -37,26 +37,30 @@ waitForPageLoad.then(() => {
   // api/grade
   // send to server, feed into ML model and send back
   // send name to server so it can be sent back to extension and autofilled in the form
-
-  const bad = false;
-
-  if (bad !== undefined && bad === true) {
-    window.location.replace("http://www.pleasehelpme.study");
-  }
 });
+
+let bad = false;
 
 sendData.then((data) => {
   console.log("sent", JSON.stringify({ prompt: data.prompt, source: data.source}));
   fetch("http://localhost:8080/api/grade", {
-  method: "POST",
-  body: JSON.stringify({
-    prompt: data.prompt,
-    source: data.source
-  }),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8"
-  }
-})
+    method: "POST",
+    body: JSON.stringify({
+      prompt: data.prompt,
+      source: data.source
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
   .then((response) => response.json())
-  .then((json) => console.log(json));
+  .then((json) => {
+    console.log(json);
+    if (json.response.trim() === "brainrot" || json.response.trim() === "Brainrot") {
+      bad = true;
+    }
+    if (bad !== undefined && bad === true) {
+      window.location.replace("http://pleasehelpme.study");
+    }
+  });
 });
