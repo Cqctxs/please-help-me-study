@@ -41,12 +41,10 @@ async function generateContent() {
   };
 
   const streamingResp = await generativeModel.generateContentStream(req);
-
-  for await (const item of streamingResp.stream) {
-    process.stdout.write('stream chunk: ' + JSON.stringify(item) + '\n');
-  }
-
   process.stdout.write('aggregated response: ' + JSON.stringify(await streamingResp.response));
+  const response = await streamingResp.response;
+  const text = response.candidates[0].content.parts[0].text;
+  process.stdout.write('\n\n' + JSON.stringify(text));
 }
 
 generateContent();
