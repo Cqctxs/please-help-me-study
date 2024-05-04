@@ -19,10 +19,10 @@ const sendData = new Promise((resolve, reject) => {
 
 waitForPageLoad.then(() => {
   setTimeout(() => {  
-    const article = document.body.innerText;
-    const name = window.location.href;
-    console.log(article);
-    dataResolve({ article, name });
+    const prompt = document.body.innerText;
+    const source = window.location.href;
+    console.log(prompt);
+    dataResolve({ prompt, source });
   }, 1000);
   
   // axios.post('/grade', {
@@ -46,12 +46,12 @@ waitForPageLoad.then(() => {
 });
 
 sendData.then((data) => {
-  console.log("sent", data);
+  console.log("sent", JSON.stringify({ prompt: data.prompt, source: data.source}));
   fetch("http://localhost:8080/api/grade", {
   method: "POST",
   body: JSON.stringify({
-    name: data.name,
-    article: data.article
+    prompt: data.prompt,
+    source: data.source
   }),
   headers: {
     "Content-type": "application/json; charset=UTF-8"
