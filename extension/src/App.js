@@ -1,29 +1,13 @@
 import React from 'react';
 import './App.css';
-import useLocalStorage from './hooks/useLocalStorage';
+import useChromeStorage from './hooks/useChromeStorage';
 
 function App(link) {
-  const [val, setVal] = useLocalStorage("");
+  const [val, setVal] = useChromeStorage("topic", "Mathematics");
   return (
     <div className="App">
       <h1>Blocker</h1>
-    <form onSubmit={(e) => {
-      e.preventDefault();
-      fetch('http://localhost:8080/api/problem/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ topic: val })
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Success:', data);
-        })
-        .catch(error => {
-          // Handle the error
-        });
-    }}>
+    <form>
       <label>
         <input
           type="text"
@@ -35,7 +19,6 @@ function App(link) {
           required
         />
       </label>
-      <button type="submit">Submit</button>
     </form>
   </div>
   );
