@@ -50,7 +50,7 @@ const ProblemDisplay = () => {
   }, [topic]);  // Add this line
 
   return (
-    <div className="title-wrapper">
+    <div className="div-wrapper">
       <div>
       {problem === null ? (
         <h1>Loading...</h1>

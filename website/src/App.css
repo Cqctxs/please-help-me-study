@@ -13,7 +13,7 @@
   position: relative;
 }
 
-.title-wrapper {
+.div-wrapper {
   margin: 50px;
   position: relative;
   text-align: center;
@@ -34,11 +34,6 @@ button {
   cursor: pointer;
   width: 150px;
   border-radius: 10px;
-}
-
-p {
-  margin-top: 16px;
-  font: normal bold 1rem / 1.2 'Poppins', 'Helvetica', sans-serif;
 }
 
 .gradient {

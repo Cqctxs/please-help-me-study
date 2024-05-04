@@ -46,6 +46,7 @@ window.addEventListener('message', (event) => {
 });
 
 let bad = false;
+let whitelisted = false;
 
 sendData.then((data) => {
   chrome.storage.sync.get('whitelist', (obj) => {
@@ -55,28 +56,32 @@ sendData.then((data) => {
     console.log(data.source.includes(whitelist));
     if (whitelist !== undefined && data.source.includes(whitelist)) {
       console.log("whitelist");
+      whitelisted = true;
     }
   });
   
-  console.log("sent", JSON.stringify({ prompt: data.prompt, source: data.source}));
-  fetch("http://localhost:8080/api/grade", {
-    method: "POST",
-    body: JSON.stringify({
-      prompt: data.prompt,
-      source: data.source
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    }
-  })
-  .then((response) => response.json())
-  .then((json) => {
-    console.log(json);
-    if (json.response.trim() === "brainrot" || json.response.trim() === "Brainrot") {
-      bad = true;
-    }
-    if (bad !== undefined && bad === true) {
-      window.location.replace("http://localhost:3000/problem");
-    }
-  });
+  if (!whitelisted) {
+    whitelisted = false;
+    console.log("sent", JSON.stringify({ prompt: data.prompt, source: data.source}));
+    fetch("http://localhost:8080/api/grade", {
+      method: "POST",
+      body: JSON.stringify({
+        prompt: data.prompt,
+        source: data.source
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      if (json.response.trim() === "brainrot" || json.response.trim() === "Brainrot") {
+        bad = true;
+      }
+      if (bad !== undefined && bad === true) {
+        window.location.replace("http://localhost:3000/problem");
+      }
+    });
+  }
 });
