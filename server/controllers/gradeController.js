@@ -8,7 +8,7 @@ const grade = async (req, res) => {
     if (!source) {
       return res.status(400).json({ error: "source is required" });
     }
-    if (source === "http://localhost:3000/" || source === "http://pleasehelpme.study/") {
+    if (source === "http://localhost:3000/" || source === "http://pleasehelpme.study/" || source === "http://localhost:3000/problem" || source === "http://pleasehelpme.study/problem") {
       return res.status(201).json({ response: "productive" });
     }
     const response = await ai.generateContent(`You are going now going to act as a judge to determine whether a website's text data contains "brainrot" or is generally productive. Please respond in one word. The text is from this website: ${source} Here is the text: ${prompt}`);
@@ -18,4 +18,3 @@ const grade = async (req, res) => {
   module.exports = {
     grade,
   };
-  

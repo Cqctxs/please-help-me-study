@@ -39,6 +39,23 @@ waitForPageLoad.then(() => {
   // send name to server so it can be sent back to extension and autofilled in the form
 });
 
+// Listen for messages from the web page
+window.addEventListener('message', (event) => {
+  // We only accept messages from ourselves
+  if (event.source !== window) return;
+
+  if (event.data.type && event.data.type === 'FROM_PAGE') {
+    // Get the value from storage
+    chrome.storage.sync.get(event.data.key, (result) => {
+      // Send a message back to the web page
+      window.postMessage({
+        type: 'FROM_EXTENSION',
+        data: result[event.data.key]
+      }, '*');
+    });
+  }
+});
+
 let bad = false;
 
 sendData.then((data) => {
