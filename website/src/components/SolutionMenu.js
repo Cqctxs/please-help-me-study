@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import axios from "axios";
 
 const SolutionMenu = () => {
     const [content, setContent] = useState("");
@@ -15,16 +14,7 @@ const SolutionMenu = () => {
         const text = rawText.textContent || rawText.innerText;
     
         console.log(text);
-        // Post to server
-        // axios.post("/path/to/server.php", { text })
-        //     .then((response) => {
-        //         // Handle the response from the server
-        //         console.log(response)
-        //     })
-        //     .catch((error) => {
-        //         // Handle any errors
-        //         console.log(error)
-        //     });
+        
     };    
 
     return (
