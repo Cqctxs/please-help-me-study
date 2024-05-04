@@ -1,34 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import useLocalStorage from './hooks/useLocalStorage';
+import useChromeStorage from './hooks/useChromeStorage';
 
 function App(link) {
-  const [val, setVal] = useLocalStorage("subject", "Math");
+  const [val, setVal] = useChromeStorage("topic", "Mathematics");
   return (
     <div className="App">
       <h1>Blocker</h1>
-  
-      <div className="SEOForm">
-        <h2>What topic do you want to study?</h2>
-          <form>
-            <label>
-            <input type="text"
-            name="subject"
-            onChange = {(e) => {
-              setVal(e.target.value);
-              e.preventDefault();
-            }}
-            value={val}
-            required />
-            </label>
-            {/* <label>
-              Site URL:
-              <input type="url" name="url" value="temp url"{window.location.href} required />
-            </label>
-            <button type="submit">Add</button> */}
-          </form>
-      </div>
-    </div>
+    <form>
+      <label>
+        <input
+          type="text"
+          name="subject"
+          onChange={(e) => {
+            setVal(e.target.value);
+          }}
+          value={val}
+          required
+        />
+      </label>
+    </form>
+  </div>
   );
 }
  
