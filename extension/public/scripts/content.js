@@ -26,19 +26,6 @@ waitForPageLoad.then(() => {
     console.log(prompt);
     dataResolve({ prompt, source });
   }, 1000);
-  
-  // axios.post('/grade', {
-  //   contents: name
-  // })
-  // .then((response) => {
-  //   console.log(response);
-  // }, (error) => {
-  //   console.log(error);
-  // });
-
-  // api/grade
-  // send to server, feed into ML model and send back
-  // send name to server so it can be sent back to extension and autofilled in the form
 });
 
 // Listen for messages from the web page
