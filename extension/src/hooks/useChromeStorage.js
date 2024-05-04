@@ -17,6 +17,7 @@ function useChromeStorage(key, initialValue) {
         value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
       chrome.storage.sync.set({ [key]: JSON.stringify(valueToStore) });
+      console.log("valueToStore", valueToStore);
     } catch (error) {
       console.log(error);
     }

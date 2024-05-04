@@ -47,20 +47,17 @@ window.addEventListener('message', (event) => {
 
 let bad = false;
 
-sendData.then(async (data) => {  // Add async here
-  const result = await new Promise((resolve) => {  // Wrap chrome.storage.sync.get in a Promise
-    chrome.storage.sync.get('whitelist', (result) => {
-      resolve(result);
-    });
+sendData.then((data) => {
+  chrome.storage.sync.get('whitelist', (obj) => {
+    const whitelist = obj['whitelist'].substring(1, obj['whitelist'].length-1);
+    console.log("whitelist", whitelist);
+    console.log("source", data.source);
+    console.log(data.source.includes(whitelist));
+    if (whitelist !== undefined && data.source.includes(whitelist)) {  // Use includes instead of contains
+      console.log("whitelist");
+    }
   });
-
-  const whitelist = result['whitelist'];
-  console.log("source", data.source);
-  console.log("result", result);
-  console.log(data.source.includes(whitelist));
-  if (whitelist !== undefined && data.source.includes(whitelist)) {  // Use includes instead of contains
-    console.log("whitelist");
-  }
+  
   console.log("sent", JSON.stringify({ prompt: data.prompt, source: data.source}));
   fetch("http://localhost:8080/api/grade", {
     method: "POST",

@@ -16,7 +16,7 @@ function useChromeStoreList(key, initialValue) {
             const updatedValue = [...storedValue, value];
             setStoredValue(updatedValue);
             chrome.storage.sync.set({ [key]: JSON.stringify(updatedValue) });
-            console.log(updatedValue);
+            console.log("updatedValue", updatedValue);
         } catch (error) {
             console.log(error);
         }
