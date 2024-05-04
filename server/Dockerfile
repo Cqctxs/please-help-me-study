@@ -4,8 +4,11 @@ FROM node:slim
 # Declaring env
 ENV NODE_ENV production
 
+# Set the working directory
+WORKDIR /app
+
 # Copying all the files in our project
-COPY . ./
+COPY . .
 
 # Installing dependencies
 RUN npm install
