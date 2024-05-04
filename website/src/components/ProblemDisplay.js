@@ -50,7 +50,8 @@ const ProblemDisplay = () => {
   }, [topic]);  // Add this line
 
   return (
-    <div>
+    <div className="title-wrapper">
+      <div>
       {problem === null ? (
         <h1>Loading...</h1>
       ) : (
@@ -59,6 +60,7 @@ const ProblemDisplay = () => {
         </div>
       )}
       <SolutionMenu solution={solution} setSolution={setSolution} />
+    </div>
     </div>
   );
 };
