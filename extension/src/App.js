@@ -11,7 +11,7 @@ function App() {
         <form>
           <label>
             Site URL:
-            <input type="url" name="url" value={window.location.href} required />
+            <input type="url" name="url" value="temp url"/*{window.location.href}*/ required />
           </label>
           <button type="submit">Add</button>
         </form>
