@@ -53,7 +53,7 @@ const SolutionMenu = (solution, setSolution) => {
                 onEditorChange={handleEditorChange}
             />
             <button onClick={handleSubmit}>Submit</button>
-            {response}
+            <p>{response}</p>
         </div>
     );
 };

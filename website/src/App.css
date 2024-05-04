@@ -36,6 +36,11 @@ button {
   border-radius: 10px;
 }
 
+p {
+  margin-top: 16px;
+  font: normal bold 1rem / 1.2 'Poppins', 'Helvetica', sans-serif;
+}
+
 .gradient {
   position: relative;
   background-image: linear-gradient(to right, #e600f2, #4e00f7, #0575E6, #c841e3);
