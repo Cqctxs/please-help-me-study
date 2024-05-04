@@ -33,18 +33,21 @@ const generativeModel = vertex_ai.preview.getGenerativeModel({
 });
 
 
-async function generateContent() {
+async function generateContent(prompt) {
   const req = {
     contents: [
-      {role: 'user', parts: [{text: `Hello google ai!`}]}
+      {role: 'user', parts: [{text: `${prompt}`}]}
     ],
   };
 
   const streamingResp = await generativeModel.generateContentStream(req);
-  process.stdout.write('aggregated response: ' + JSON.stringify(await streamingResp.response));
+  //process.stdout.write('aggregated response: ' + JSON.stringify(await streamingResp.response));
   const response = await streamingResp.response;
   const text = response.candidates[0].content.parts[0].text;
-  process.stdout.write('\n\n' + JSON.stringify(text));
+  //process.stdout.write('\n\n' + JSON.stringify(text));
+  return text;
 }
 
-generateContent();
+module.exports = {
+    generateContent
+}
