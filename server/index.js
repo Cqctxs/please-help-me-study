@@ -18,6 +18,7 @@ connectDB();
 
 app.use("/test", require("./routes/test"));
 app.use("/api/grade", require("./routes/api/grade"));
+app.use("/api/problem", require("./routes/api/problem"));
 
 app.use("/", function (req, res) {
   res.json({ error: "endpoint not found" });
