@@ -1,7 +1,7 @@
-services:
-  web:
-    build: 
-      context: ./website
-      dockerfile: Dockerfile
-    ports:
-      - "8000:3000"
+# services:
+#   web:
+#     build: 
+#       context: ./website
+#       dockerfile: Dockerfile
+#     ports:
+#       - "8000:3000"
