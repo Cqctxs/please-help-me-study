@@ -21,7 +21,6 @@ const SolutionMenu = (solution, setSolution) => {
 
     // Send the solution to the server
     fetch("https://api.pleasehelpme.study/api/problem/answer", {
-      mode: "no-cors",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
