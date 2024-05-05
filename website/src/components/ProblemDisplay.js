@@ -28,7 +28,7 @@ const ProblemDisplay = () => {
   useEffect(() => {
     if (topic !== null) {  // Add this line
       console.log("Topic:", topic)
-      fetch("https://api.pleasehelpme.study:8080/api/problem/generate", {
+      fetch("https://api.pleasehelpme.study/api/problem/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
