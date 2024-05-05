@@ -2,7 +2,6 @@ pleasehelpme.study {
     reverse_proxy 127.0.0.1:8000
 }
 
-api.pleasehelpme.study {
+34.31.69.199 {
     reverse_proxy 127.0.0.1:8001
-
 }
