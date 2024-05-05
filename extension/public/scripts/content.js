@@ -75,8 +75,7 @@ sendData.then((data) => {
   if (!whitelisted) {
     whitelisted = false;
     console.log("sent", JSON.stringify({ prompt: data.prompt, source: data.source}));
-    fetch("34.31.69.199/api/grade", {
-      mode: 'no-cors',
+    fetch("https://api.pleasehelpme.study/api/grade", {
       method: "POST",
       body: JSON.stringify({
         prompt: data.prompt,

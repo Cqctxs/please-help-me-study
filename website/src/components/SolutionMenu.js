@@ -20,8 +20,7 @@ const SolutionMenu = (solution, setSolution) => {
     console.log(text);
 
     // Send the solution to the server
-    fetch("34.31.69.199/api/problem/answer", {
-      mode: "no-cors",
+    fetch("https://api.pleasehelpme.study/api/problem/answer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
