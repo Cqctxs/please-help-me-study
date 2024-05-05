@@ -15,6 +15,8 @@ RUN npm install
 
 RUN curl -sSL https://sdk.cloud.google.com | bash
 
+ENV PATH $PATH:/root/google-cloud-sdk/bin
+
 RUN gcloud init
 
 RUN gcloud auth activate-service-account lostcactus@please-help-me-study.iam.gserviceaccount.com --key-file=sa-private-key.json
