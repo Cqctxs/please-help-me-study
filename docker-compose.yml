@@ -15,4 +15,4 @@ services:
     volumes:
       - type: bind
         source: ~/sa-private-key.json
-        target: ~/sa-private-key.json
+        target: /home/sa-private-key.json
