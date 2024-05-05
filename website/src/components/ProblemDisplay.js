@@ -29,6 +29,7 @@ const ProblemDisplay = () => {
     if (topic !== null) {
       console.log("Topic:", topic)
       fetch("https://api.pleasehelpme.study/api/problem/generate", {
+        mode: 'no-cors',
         method: "POST",
         headers: {
           "Content-Type": "application/json",
