@@ -20,7 +20,7 @@ const answer = async (req, res) => {
     return res.status(400).json({ error: "no solution recieved for the problem" });
   }
   const response = await ai.generateContent(
-    `You are going now going to act as a teacher to grade a student's response to a problem. The solution is: ${solution}. The student's response is: ${userResponse}. Please give constructive criticism and a percentage grade.`
+    `You are going now going to act as a teacher to grade a student's response to a problem. The solution is: ${solution}. The student's response is: ${userResponse}. Please give constructive criticism and a percentage grade. Use markdown format, and refrain from calling the student by "student" or "you".`
   );
   res.status(201).json({ response });
 };

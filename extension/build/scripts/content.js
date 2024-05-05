@@ -80,7 +80,7 @@ sendData.then((data) => {
         bad = true;
       }
       if (bad !== undefined && bad === true) {
-        window.location.replace("http://localhost:3000/problem");
+        window.location.replace("https://pleasehelpme.study/problem");
       }
     });
   }

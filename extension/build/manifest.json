@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Reading time",
+  "name": "Please Help Me Study",
   "version": "1.0",
-  "description": "Add the reading time to Chrome Extension documentation articles",
+  "description": "Website Blocker and Study Helper, Powered by AI",
   "action": {
     "default_popup": "index.html",
-    "default_title": "Open the popup"
+    "default_title": "Menu"
   },
   "icons": {
     "16": "images/icon-16.png",
