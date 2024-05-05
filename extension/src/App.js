@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import useChromeStorage from './hooks/useChromeStorage';
 import useChromeStoreList from './hooks/useChromeStoreList';
@@ -9,6 +9,14 @@ function App() {
   const [url_b, set_url_b] = useState("");
   const [w, whitelist] = useChromeStoreList("whitelist", []);
   const [b, blacklist] = useChromeStoreList("blacklist", []);
+
+  useEffect(() => {
+    whitelist("a", "add");
+    whitelist("a", "delete");
+    blacklist("a", "add");
+    blacklist("a", "delete");
+  }, []
+  );
 
   return (
     <div className="App">

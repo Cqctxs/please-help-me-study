@@ -91,7 +91,7 @@ sendData.then((data) => {
       if (json.response.trim() === "brainrot" || json.response.trim() === "Brainrot") {
         bad = true;
       }
-      if (blacklisted || (bad !== undefined && bad === true)) {
+      if (!whitelisted && (blacklisted || (bad !== undefined && bad === true))) {
         window.location.replace("https://pleasehelpme.study/problem");
       }
     });
