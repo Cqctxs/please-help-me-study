@@ -1,10 +1,9 @@
-/* global chrome */
 import React, { useState } from 'react';
 import './App.css';
 import useChromeStorage from './hooks/useChromeStorage';
 import useChromeStoreList from './hooks/useChromeStoreList';
 
-function App(link) {
+function App() {
   const [val, setVal] = useChromeStorage("topic", "Mathematics");
   const [url_w, set_url_w] = useState("");
   const [url_b, set_url_b] = useState("");
@@ -29,14 +28,9 @@ function App(link) {
         />
       </label>
     </form>
-    <form
-    onSubmit={(e) => {
-      whitelist(url_w, "add");
-      set_url_w("");
-      console.log("w");
-    }}>
+    <form>
       <label>
-        <span> Add </span>
+        <span>Whitelist</span>
         <input
           type="text"
           name="url"
@@ -48,9 +42,41 @@ function App(link) {
           required
         />
       </label>
-      <input type="submit" value="Submit"></input>
+      <input type="submit" value="Add" onClick={(e) => {
+      whitelist(url_w, "add");
+      e.preventDefault();
+    }}></input>
+      <input type="submit" value="Delete" onClick={(e) => {
+      whitelist(url_w, "delete");
+      e.preventDefault();
+    }}></input>
     </form>
+    <form>
+      <label>
+        <span>Blacklist</span>
+        <input
+          type="text"
+          name="url"
+          placeholder="https://www.example.com/"
+          value = {url_b}
+          onChange={(e) => {
+            set_url_b(e.target.value);
+          }}
+          required
+        />
+      </label>
+      <input type="submit" value="Add" onClick={(e) => {
+      blacklist(url_b, "add");
+      e.preventDefault();
+    }}></input>
+      <input type="submit" value="Delete" onClick={(e) => {
+      blacklist(url_b, "delete");
+      e.preventDefault();
+    }}></input>
+    </form>
+    <div>{val}</div>
     <div>{w}</div>
+    <div>{b}</div>
   </div>
   );
 }
