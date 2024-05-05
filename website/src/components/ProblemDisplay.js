@@ -14,7 +14,7 @@ const ProblemDisplay = () => {
       if (event.source !== window) return;
       if (event.data.type && event.data.type === "FROM_EXTENSION") {
         console.log(event.data.data);
-        setTopic(event.data.data);  // Add this line
+        setTopic(event.data.data);
       }
     };
     window.addEventListener("message", handleMessage);
@@ -26,7 +26,7 @@ const ProblemDisplay = () => {
   }, []);
 
   useEffect(() => {
-    if (topic !== null) {  // Add this line
+    if (topic !== null) {
       console.log("Topic:", topic)
       fetch("https://api.pleasehelpme.study/api/problem/generate", {
         method: "POST",
@@ -44,23 +44,23 @@ const ProblemDisplay = () => {
           setSolution(obj.solution);
         })
         .catch((error) => {
-          // Handle the error
+          console.log(error);
         });
     }
-  }, [topic]);  // Add this line
+  }, [topic]);
 
   return (
     <div className="div-wrapper">
-      <div>
-      {problem === null ? (
-        <h1>Loading...</h1>
-      ) : (
         <div>
-          <h1>{problem}</h1>
+        {problem === null ? (
+            <h1>Loading...</h1>
+        ) : (
+            <div>
+            <h1>{problem}</h1>
+            </div>
+        )}
+        <SolutionMenu solution={solution} setSolution={setSolution} />
         </div>
-      )}
-      <SolutionMenu solution={solution} setSolution={setSolution} />
-    </div>
     </div>
   );
 };

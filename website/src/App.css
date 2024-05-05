@@ -38,16 +38,6 @@
   position: relative;
 }
 
-/*.flex {
-  position: relative;
-  text-align: center;
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  flex-direction: column;
-  height: 100vh;
-} */
-
 .div-wrapper {
   margin: 50px;
   position: relative;
@@ -74,6 +64,18 @@ button {
 .gradient {
   position: relative;
   background-image: linear-gradient(to right, #e600f2, #4e00f7, #0575E6, #c841e3);
+  -webkit-background-clip: text; 
+  color: transparent;
+  background-clip: text; 
+  background-size: 300%;
+  background-position: -100%;  
+  
+  animation: move 5s infinite alternate;
+}
+
+.gradient2 {
+  position: relative;
+  background-image: linear-gradient(to right, #0059f2, #e48622, #05e645, #1d6ffe);
   -webkit-background-clip: text; 
   color: transparent;
   background-clip: text; 
