@@ -13,13 +13,9 @@ COPY . .
 # Installing dependencies
 RUN npm install
 
-RUN apt-get -y update; apt-get -y install curl
+RUN apt-get -y update; apt-get -y install apt-transport-https ca-certificates gnupg curl
 
-# Downloading gcloud package
-RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz
-
-RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-cli -y
-
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg && apt-get update -y && apt-get install google-cloud-sdk -y
 
 # RUN /root/google-cloud-sdk/bin/gcloud auth activate-service-account lostcactus@please-help-me-study.iam.gserviceaccount.com --key-file=/sa-private-key.json && \
 #     /root/google-cloud-sdk/bin/gcloud config set project please-help-me-study
