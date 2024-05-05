@@ -7,7 +7,9 @@ const cors = require("cors");
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://pleasehelpme.study',
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ strict: true }));
 app.enable("trust proxy");
