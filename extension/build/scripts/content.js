@@ -47,23 +47,36 @@ window.addEventListener('message', (event) => {
 
 let bad = false;
 let whitelisted = false;
+let blacklisted = false;
 
 sendData.then((data) => {
+  chrome.storage.sync.get('blacklist', (obj) => {
+    const blacklist = obj['blacklist'];
+    blacklist.forEach(b => {
+      const url = b.substring(1, b.length-1);
+      if (url !== undefined && data.source.includes(url)) {
+        console.log("blacklist");
+        blacklisted = true;
+      }
+    });
+  });
+
   chrome.storage.sync.get('whitelist', (obj) => {
-    const whitelist = obj['whitelist'].substring(1, obj['whitelist'].length-1);
-    console.log("whitelist", whitelist);
-    console.log("source", data.source);
-    console.log(data.source.includes(whitelist));
-    if (whitelist !== undefined && data.source.includes(whitelist)) {
-      console.log("whitelist");
-      whitelisted = true;
-    }
+    const whitelist = obj['whitelist'];
+    whitelist.forEach(w => {
+      const url = w.substring(1, w.length-1);
+      if (url !== undefined && data.source.includes(url)) {
+        console.log("whitelist");
+        whitelisted = true;
+      }
+    });
   });
   
   if (!whitelisted) {
     whitelisted = false;
     console.log("sent", JSON.stringify({ prompt: data.prompt, source: data.source}));
     fetch("https://api.pleasehelpme.study/api/grade", {
+      mode: 'no-cors',
       method: "POST",
       body: JSON.stringify({
         prompt: data.prompt,
@@ -79,7 +92,7 @@ sendData.then((data) => {
       if (json.response.trim() === "brainrot" || json.response.trim() === "Brainrot") {
         bad = true;
       }
-      if (bad !== undefined && bad === true) {
+      if (blacklisted || (bad !== undefined && bad === true)) {
         window.location.replace("https://pleasehelpme.study/problem");
       }
     });

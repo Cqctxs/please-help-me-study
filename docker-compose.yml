@@ -5,3 +5,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:3000"
+    
+  server:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8001:3000"
+    volumes:
+      - type: bind
+        source: /home/cqctxs/sa-private-key.json
+        target: /app/sa-private-key.json
