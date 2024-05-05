@@ -2,27 +2,31 @@
 
 import { useState, useEffect } from 'react';
 
-function useChromeStoreList(key, initialValue) {
-    const [storedValue, setStoredValue] = useState(initialValue);
+function useChromeStoreList(key, value, mode, listName) {
+    
+    const [urlList, setUrlList] = useState([]);
 
-    useEffect(() => {
-        chrome.storage.sync.get([key], function(result) {
-            setStoredValue(result[key] ? JSON.parse(result[key]) : initialValue);
+    const init = () => {
+        chrome.storage.sync.set({
+            [key]:[]
+        }, function() {
+            console.log("added to list");
         });
-    }, [key, initialValue]);
+    }
 
-    const appendValue = (value) => {
-        try {
-            const updatedValue = [...storedValue, value];
-            setStoredValue(updatedValue);
-            chrome.storage.sync.set({ [key]: JSON.stringify(updatedValue) });
-            console.log("updatedValue", updatedValue);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    return [storedValue, appendValue];
+    chrome.storage.sync.get('whitelist', (obj) => {
+        const array = obj['whitelist'];
+        if (mode === "remove") array.remove(array.indexOf(value));
+        else if (mode === "add") array.push(value);
+        setUrlList(array);
+        chrome.storage.sync.set({
+            [key]:array
+        }, function() {
+            console.log("update from list with new values");
+        });
+    });
+    
+    return [urlList];
 }
 
 export default useChromeStoreList;
