@@ -17,9 +17,9 @@ RUN curl -sSL https://sdk.cloud.google.com | bash
 
 ENV PATH $PATH:/root/google-cloud-sdk/bin
 
-RUN gcloud auth activate-service-account lostcactus@please-help-me-study.iam.gserviceaccount.com --key-file=sa-private-key.json
+# RUN gcloud auth activate-service-account lostcactus@please-help-me-study.iam.gserviceaccount.com --key-file=sa-private-key.json
 
-RUN gcloud config set project please-help-me-study
+# RUN gcloud config set project please-help-me-study
 
 # Starting our application
 CMD [ "node", "index.js", "--host", "0.0.0.0", "--port", "3000"]
