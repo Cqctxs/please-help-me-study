@@ -63,7 +63,7 @@ sendData.then((data) => {
   if (!whitelisted) {
     whitelisted = false;
     console.log("sent", JSON.stringify({ prompt: data.prompt, source: data.source}));
-    fetch("http://localhost:8080/api/grade", {
+    fetch("https://api.pleasehelpme.study:8001/api/grade", {
       method: "POST",
       body: JSON.stringify({
         prompt: data.prompt,
