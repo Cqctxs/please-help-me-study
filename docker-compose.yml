@@ -15,4 +15,4 @@ services:
     volumes:
       - type: bind
         source: /home/cqctxs/sa-private-key.json
-        target: /home/sa-private-key.json
+        target: /app/sa-private-key.json
