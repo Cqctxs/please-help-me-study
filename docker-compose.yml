@@ -12,3 +12,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8001:3000"
+    volumes:
+      - type: bind
+        source: ~/sa-private-key.json
+        target: sa-private-key.json
