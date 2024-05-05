@@ -28,7 +28,7 @@ const ProblemDisplay = () => {
   useEffect(() => {
     if (topic !== null) {
       console.log("Topic:", topic)
-      fetch("34.31.69.199/api/problem/generate", {
+      fetch("https://api.pleasehelpme.study/api/problem/generate", {
         mode: 'no-cors',
         method: "POST",
         headers: {
