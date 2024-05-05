@@ -25,11 +25,12 @@ function App() {
             required
           />
         </form>
-        <form>
-          <h3>Whitelist</h3>
+        <div className="form__group field">
           <input
-            type="text"
-            name="url"
+            type="input"
+            className="form__field_whitelist"
+            name="whitelist"
+            id="whitelist"
             placeholder="https://www.example.com/"
             value={url_w}
             onChange={(e) => {
@@ -37,7 +38,9 @@ function App() {
             }}
             required
           />
-        </form>
+          <label for="whitelist" className="form__label">Whitelist</label>
+        </div>
+        <div className="list">{w.join(', ')}</div>
         <div className="buttons">
           <input className="submitButton"
             type="submit"
@@ -45,8 +48,8 @@ function App() {
             onClick={(e) => {
               whitelist(url_w, "add");
               e.preventDefault();
-            }}
-          ></input>
+            }}>   
+          </input>
           <input className="deleteButton"
             type="submit"
             value="Delete"
@@ -57,12 +60,12 @@ function App() {
           }}>
           </input>
         </div>
-        <div className="list">{w.join(', ')}</div>
-        <form>
-          <h3>Blacklist</h3>
+        <div className="form__group field">
           <input
-            type="text"
-            name="url"
+            type="input"
+            className="form__field_blacklist"
+            name="blacklist"
+            id="blacklist"
             placeholder="https://www.example.com/"
             value={url_b}
             onChange={(e) => {
@@ -70,7 +73,9 @@ function App() {
             }}
             required
           />
-        </form>
+          <label for="blacklist" className="form__label">Blacklist</label>
+        </div>
+        <div className="list">{b.join(', ')}</div>
         <div className="buttons">
           <input className="submitButton"
             type="submit"
@@ -78,8 +83,8 @@ function App() {
             onClick={(e) => {
               blacklist(url_b, "add");
               e.preventDefault();
-            }}
-          ></input>
+            }}>
+          </input>
           <input className="deleteButton"
             type="submit"
             value="Delete"
@@ -88,9 +93,8 @@ function App() {
               set_url_b("");
               e.preventDefault();
             }}>
-            </input>
-            </div>
-        <div className="list">{b.join(', ')}</div>
+          </input>
+        </div>
       </div>
     </div>
   );

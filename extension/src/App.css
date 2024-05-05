@@ -17,24 +17,29 @@
   overflow-y: scroll;
   height: 100px;
   width: 60%;
+
 }
 
 .submitButton {
   color: #ffffff;
   background: linear-gradient(90deg, #65F78C 0%, #54E051 35%, #96FC5B 100%);
   border: 0px;
-  font-size: 10px;
-  border-radius: 5px;
+  font-size: 16px;
+  height: 22px;
+  width: 60px;
+  border-radius: 3px;
   opacity: 1;
   transition: color, opacity 0.3s linear 0s;
 }
 
 .deleteButton {
   color: #ffffff;
-  background: linear-gradient(90deg, #65F78C 0%, #54E051 35%, #96FC5B 100%);
+  background: linear-gradient(90deg, #f36565 0%, #e05151 35%, #f56b6b 100%);
   border: 0px;
-  font-size: 10px;
-  border-radius: 5px;
+  font-size: 16px;
+  height: 22px;
+  width: 60px;
+  border-radius: 3px;
   opacity: 1;
   transition: color, opacity 0.3s linear 0s;
 }
@@ -46,4 +51,81 @@
 h3 {
   font-size: 16px;
   text-align: center;
+  margin-bottom: 5px;
+}
+
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+  zoom: 0.8;
+  -moz-transform: scale(0.8);
+}
+
+.form__field_whitelist,
+.form__field_blacklist {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 16px;
+  color: #000000;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 16px;
+    cursor: text;
+    top: 16px;
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 16px;
+  color: #9b9b9b;
+}
+
+.form__field_whitelist:focus,
+.form__field_blacklist:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+}
+
+.form__field_whitelist:focus {
+  color: #4ed468;
+  border-image: linear-gradient(to right, #43aecc, #1ce637);
+  border-image-slice: 1;
+}
+
+.form__field_blacklist:focus {
+  color: #e11d1d;
+  border-image: linear-gradient(to right, #de3131, #d48a23);
+  border-image-slice: 1;
+}
+
+.form__field {
+  &:required,
+  &:invalid {
+    box-shadow: none;
+  }
 }
