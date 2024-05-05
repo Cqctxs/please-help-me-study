@@ -15,7 +15,7 @@ RUN npm install
 
 RUN apt-get -y update; apt-get -y install apt-transport-https ca-certificates gnupg curl
 
-RUN apt-get install google-cloud-cli
+RUN RUN apt-get -y update; apt-get -y install google-cloud-cli
 
 # RUN /root/google-cloud-sdk/bin/gcloud auth activate-service-account lostcactus@please-help-me-study.iam.gserviceaccount.com --key-file=/sa-private-key.json && \
 #     /root/google-cloud-sdk/bin/gcloud config set project please-help-me-study
