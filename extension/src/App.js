@@ -48,7 +48,7 @@ function App() {
           />
           <label for="whitelist" className="form__label">Whitelist</label>
         </div>
-        <div className="list">{w.join(', ')}</div>
+        <div className="list">{w.length === 0 ? 'Empty' : w.join(', ')}</div>
         <div className="buttons">
           <input className="submitButton"
             type="submit"
@@ -83,7 +83,7 @@ function App() {
           />
           <label for="blacklist" className="form__label">Blacklist</label>
         </div>
-        <div className="list">{b.join(', ')}</div>
+        <div className="list">{b.length === 0 ? 'Empty' : b.join(', ')}</div>
         <div className="buttons">
           <input className="submitButton"
             type="submit"
