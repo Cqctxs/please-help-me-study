@@ -63,7 +63,7 @@ const SolutionMenu = (solution, setSolution) => {
           <ReactMarkdown>{response}</ReactMarkdown>
         </div>
       ) : (
-        <h1>Loading...</h1>
+        <h1>Solution:</h1>
       )}
     </div>
   );
