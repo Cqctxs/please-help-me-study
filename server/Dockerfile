@@ -13,6 +13,8 @@ COPY . .
 # Installing dependencies
 RUN npm install
 
+RUN apt install curl
+
 # Downloading gcloud package
 RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz
 
