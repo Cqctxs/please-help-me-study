@@ -13,7 +13,7 @@ COPY . .
 # Installing dependencies
 RUN npm install
 
-RUN apt-get -y update; apt-get -y install apt-transport-https ca-certificates gnupg curl
+RUN apt-get -y update; apt-get -y install apt-transport-https ca-certificates gnupg curl python3
 
 # Downloading gcloud package
 RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz
