@@ -13,7 +13,7 @@ COPY . .
 # Installing dependencies
 RUN npm install
 
-RUN apt-get -y update; apt-get -y install apt-transport-https ca-certificates gnupg cur
+RUN apt-get -y update; apt-get -y install apt-transport-https ca-certificates gnupg curl
 
 RUN apt-get update && sudo apt-get install google-cloud-cli
 
