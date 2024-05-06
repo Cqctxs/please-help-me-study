@@ -88,7 +88,7 @@ sendData.then((data) => {
     .then((response) => response.json())
     .then((json) => {
       console.log(json);
-      if (json.response.trim() === "brainrot" || json.response.trim() === "Brainrot") {
+      if (json.response.trim().includes("brainrot") || json.response.trim().includes("Brainrot")) {
         bad = true;
       }
       if (!whitelisted && (blacklisted || (bad !== undefined && bad === true))) {
