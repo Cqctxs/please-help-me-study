@@ -37,11 +37,12 @@ const ProblemDisplay = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          const obj = JSON.parse(data.response.slice(7, -6));
-          console.log(obj.problem);
-          console.log(obj.solution);
-          setProblem(obj.problem);
-          setSolution(obj.solution);
+          console.log(data.response);
+          // const obj = JSON.parse(data.response.slice(7, -6));
+          // console.log(obj.problem);
+          // console.log(obj.solution);
+          // setProblem(obj.problem);
+          // setSolution(obj.solution);
         })
         .catch((error) => {
           console.log(error);
