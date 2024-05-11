@@ -39,7 +39,7 @@ const SolutionMenu = (solution, setSolution) => {
   return (
     <div>
       <Editor
-        apiKey="fm5ufxn5p7tojmfbzvqc6fxs62argkafj4p5cyb26ze8y5up"
+        apiKey="<insert key here>"
         init={{
           selector: "textarea",
           resize: false,
